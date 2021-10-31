@@ -17,6 +17,10 @@
 		C606563C272C376B003841CC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6065612272C3769003841CC /* ContentView.swift */; };
 		C606563D272C376B003841CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6065613272C376A003841CC /* Assets.xcassets */; };
 		C606563E272C376B003841CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6065613272C376A003841CC /* Assets.xcassets */; };
+		C606564E272C377B003841CC /* MetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C606564D272C377B003841CC /* MetalView.swift */; };
+		C606564F272C377B003841CC /* MetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C606564D272C377B003841CC /* MetalView.swift */; };
+		C6065655272E83B3003841CC /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6065654272E83B3003841CC /* Renderer.swift */; };
+		C6065656272E83B3003841CC /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6065654272E83B3003841CC /* Renderer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,8 @@
 		C6065631272C376B003841CC /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6065635272C376B003841CC /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		C6065637272C376B003841CC /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+		C606564D272C377B003841CC /* MetalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalView.swift; sourceTree = "<group>"; };
+		C6065654272E83B3003841CC /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +92,7 @@
 		C606560B272C3769003841CC = {
 			isa = PBXGroup;
 			children = (
+				C6065653272E83A6003841CC /* Renderer */,
 				C6065610272C3769003841CC /* Shared */,
 				C606561F272C376A003841CC /* macOS */,
 				C6065628272C376B003841CC /* Tests iOS */,
@@ -99,6 +106,7 @@
 			children = (
 				C6065611272C3769003841CC /* ModelViewerApp.swift */,
 				C6065612272C3769003841CC /* ContentView.swift */,
+				C606564D272C377B003841CC /* MetalView.swift */,
 				C6065613272C376A003841CC /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -139,6 +147,14 @@
 				C6065637272C376B003841CC /* Tests_macOSLaunchTests.swift */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		C6065653272E83A6003841CC /* Renderer */ = {
+			isa = PBXGroup;
+			children = (
+				C6065654272E83B3003841CC /* Renderer.swift */,
+			);
+			path = Renderer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -299,7 +315,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6065655272E83B3003841CC /* Renderer.swift in Sources */,
 				C606563B272C376B003841CC /* ContentView.swift in Sources */,
+				C606564E272C377B003841CC /* MetalView.swift in Sources */,
 				C6065639272C376B003841CC /* ModelViewerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,7 +326,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6065656272E83B3003841CC /* Renderer.swift in Sources */,
 				C606563C272C376B003841CC /* ContentView.swift in Sources */,
+				C606564F272C377B003841CC /* MetalView.swift in Sources */,
 				C606563A272C376B003841CC /* ModelViewerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

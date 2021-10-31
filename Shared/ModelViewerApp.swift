@@ -11,7 +11,7 @@ import SwiftUI
 struct ModelViewerApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(r: 0.5, g: 0.5, b: 0.5)
         }
     }
 }
