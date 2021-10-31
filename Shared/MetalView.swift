@@ -6,17 +6,18 @@ struct MetalView: UIViewRepresentable {
     var r: Double
     var g: Double
     var b: Double
+    var frame: CGRect
     
-    func updateUIView(_ uiView: MTKView, context: Context) {
-        uiView.clearColor = MTLClearColorMake(r, g, b, 1.0)
-        uiView.draw()
+    func updateUIView(_ view: MTKView, context: Context) {
+        view.clearColor = MTLClearColorMake(r, g, b, 1.0)
+        view.draw()
     }
     
     func makeUIView(context: Context) -> MTKView {
-        let view = MTKView()
-        view.enableSetNeedsDisplay = true;
-        view.device = MTLCreateSystemDefaultDevice();
-        view.clearColor = MTLClearColorMake(r, g, b, 1.0);
+        let view = MTKView(frame: frame)
+        view.enableSetNeedsDisplay = true
+        view.device = MTLCreateSystemDefaultDevice()
+        view.clearColor = MTLClearColorMake(r, g, b, 1.0)
         
         guard let renderer = Renderer(view: view)
         else {
@@ -45,7 +46,8 @@ struct MetalView: UIViewRepresentable {
         }
     }
     
-    init(r: Double, g: Double, b: Double) {
+    init(frame: CGRect, r: Double, g: Double, b: Double) {
+        self.frame = frame
         self.r = r
         self.g = g
         self.b = b

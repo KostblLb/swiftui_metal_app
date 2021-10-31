@@ -11,18 +11,22 @@ struct ContentView: View {
     @State var r: Double
     @State var g: Double
     @State var b: Double
+    
+    @State var frame: CGRect = .zero
 
     var body: some View {
-        VStack {
-            MetalView(r: r, g: g, b: b)
-            Stepper(value: $r, in: 0...1, step: 0.2) {
-                Text("R \(r)")
-            }
-            Stepper(value: $g, in: 0...1, step: 0.2) {
-                Text("G \(g)")
-            }
-            Stepper(value: $b, in: 0...1, step: 0.2) {
-                Text("B \(b)")
+        GeometryReader { geometry in
+            VStack {
+                MetalView(frame: geometry.frame(in: .local), r: r, g: g, b: b)
+                Stepper(value: $r, in: 0...1, step: 0.2) {
+                    Text("R \(r)")
+                }
+                Stepper(value: $g, in: 0...1, step: 0.2) {
+                    Text("G \(g)")
+                }
+                Stepper(value: $b, in: 0...1, step: 0.2) {
+                    Text("B \(b)")
+                }
             }
         }
     }
