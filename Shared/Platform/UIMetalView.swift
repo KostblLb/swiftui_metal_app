@@ -1,3 +1,5 @@
+#if !os(macOS)
+
 import SwiftUI
 import UIKit
 import MetalKit
@@ -7,10 +9,15 @@ struct MetalView: UIViewRepresentable {
     var g: Double
     var b: Double
     var frame: CGRect
+    var counter: UInt64
     
     func updateUIView(_ view: MTKView, context: Context) {
+        let deltaTime = counter - context.coordinator.prevCounter;
         view.clearColor = MTLClearColorMake(r, g, b, 1.0)
         view.draw()
+        context.coordinator.renderer?.update(deltaTime)
+        
+        context.coordinator.prevCounter = counter
     }
     
     func makeUIView(context: Context) -> MTKView {
@@ -19,7 +26,7 @@ struct MetalView: UIViewRepresentable {
         view.device = MTLCreateSystemDefaultDevice()
         view.clearColor = MTLClearColorMake(r, g, b, 1.0)
         
-        guard let renderer = Renderer(view: view)
+        guard let renderer = TriangleRenderer(view: view)
         else {
             return view
         }
@@ -38,7 +45,8 @@ struct MetalView: UIViewRepresentable {
     
     class Coordinator: NSObject {
         var view: MetalView
-        var renderer: Renderer?
+        var renderer: TriangleRenderer?
+        var prevCounter: UInt64 = 0;
 
         init(_ view: MetalView) {
             self.view = view
@@ -46,10 +54,13 @@ struct MetalView: UIViewRepresentable {
         }
     }
     
-    init(frame: CGRect, r: Double, g: Double, b: Double) {
+    init(frame: CGRect, counter: UInt64, r: Double, g: Double, b: Double) {
         self.frame = frame
         self.r = r
         self.g = g
         self.b = b
+        self.counter = counter
     }
 }
+
+#endif

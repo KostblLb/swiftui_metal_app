@@ -17,12 +17,14 @@
 		C606563C272C376B003841CC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6065612272C3769003841CC /* ContentView.swift */; };
 		C606563D272C376B003841CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6065613272C376A003841CC /* Assets.xcassets */; };
 		C606563E272C376B003841CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6065613272C376A003841CC /* Assets.xcassets */; };
-		C606564E272C377B003841CC /* MetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C606564D272C377B003841CC /* MetalView.swift */; };
-		C606564F272C377B003841CC /* MetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C606564D272C377B003841CC /* MetalView.swift */; };
-		C6065655272E83B3003841CC /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6065654272E83B3003841CC /* Renderer.swift */; };
-		C6065656272E83B3003841CC /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6065654272E83B3003841CC /* Renderer.swift */; };
+		C606564E272C377B003841CC /* UIMetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C606564D272C377B003841CC /* UIMetalView.swift */; };
+		C606564F272C377B003841CC /* UIMetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C606564D272C377B003841CC /* UIMetalView.swift */; };
+		C6065655272E83B3003841CC /* TriangleRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6065654272E83B3003841CC /* TriangleRenderer.swift */; };
+		C6065656272E83B3003841CC /* TriangleRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6065654272E83B3003841CC /* TriangleRenderer.swift */; };
 		C6065660272ED2CE003841CC /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = C606565F272ED2CE003841CC /* Shaders.metal */; };
 		C6065661272ED2CE003841CC /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = C606565F272ED2CE003841CC /* Shaders.metal */; };
+		C625BAB827536C7500F88474 /* NSMetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C625BAB727536C7500F88474 /* NSMetalView.swift */; };
+		C625BAB927536C7500F88474 /* NSMetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C625BAB727536C7500F88474 /* NSMetalView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,11 +57,12 @@
 		C6065631272C376B003841CC /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6065635272C376B003841CC /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		C6065637272C376B003841CC /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
-		C606564D272C377B003841CC /* MetalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalView.swift; sourceTree = "<group>"; };
-		C6065654272E83B3003841CC /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
+		C606564D272C377B003841CC /* UIMetalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIMetalView.swift; sourceTree = "<group>"; };
+		C6065654272E83B3003841CC /* TriangleRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleRenderer.swift; sourceTree = "<group>"; };
 		C606565F272ED2CE003841CC /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		C6065665272ED72E003841CC /* ShaderTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShaderTypes.h; sourceTree = "<group>"; };
 		C6065666272ED870003841CC /* ModelViewer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ModelViewer-Bridging-Header.h"; sourceTree = "<group>"; };
+		C625BAB727536C7500F88474 /* NSMetalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMetalView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,7 +115,7 @@
 				C6065666272ED870003841CC /* ModelViewer-Bridging-Header.h */,
 				C6065611272C3769003841CC /* ModelViewerApp.swift */,
 				C6065612272C3769003841CC /* ContentView.swift */,
-				C606564D272C377B003841CC /* MetalView.swift */,
+				C625BABA27552FC800F88474 /* Platform */,
 				C6065613272C376A003841CC /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -158,11 +161,20 @@
 		C6065653272E83A6003841CC /* Renderer */ = {
 			isa = PBXGroup;
 			children = (
-				C6065654272E83B3003841CC /* Renderer.swift */,
+				C6065654272E83B3003841CC /* TriangleRenderer.swift */,
 				C606565F272ED2CE003841CC /* Shaders.metal */,
 				C6065665272ED72E003841CC /* ShaderTypes.h */,
 			);
 			path = Renderer;
+			sourceTree = "<group>";
+		};
+		C625BABA27552FC800F88474 /* Platform */ = {
+			isa = PBXGroup;
+			children = (
+				C606564D272C377B003841CC /* UIMetalView.swift */,
+				C625BAB727536C7500F88474 /* NSMetalView.swift */,
+			);
+			path = Platform;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,10 +336,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6065660272ED2CE003841CC /* Shaders.metal in Sources */,
-				C6065655272E83B3003841CC /* Renderer.swift in Sources */,
+				C6065655272E83B3003841CC /* TriangleRenderer.swift in Sources */,
 				C606563B272C376B003841CC /* ContentView.swift in Sources */,
-				C606564E272C377B003841CC /* MetalView.swift in Sources */,
+				C606564E272C377B003841CC /* UIMetalView.swift in Sources */,
 				C6065639272C376B003841CC /* ModelViewerApp.swift in Sources */,
+				C625BAB827536C7500F88474 /* NSMetalView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,10 +349,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6065661272ED2CE003841CC /* Shaders.metal in Sources */,
-				C6065656272E83B3003841CC /* Renderer.swift in Sources */,
+				C6065656272E83B3003841CC /* TriangleRenderer.swift in Sources */,
 				C606563C272C376B003841CC /* ContentView.swift in Sources */,
-				C606564F272C377B003841CC /* MetalView.swift in Sources */,
+				C606564F272C377B003841CC /* UIMetalView.swift in Sources */,
 				C606563A272C376B003841CC /* ModelViewerApp.swift in Sources */,
+				C625BAB927536C7500F88474 /* NSMetalView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

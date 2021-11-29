@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ContentView: View {
     @State var r: Double
@@ -13,11 +14,13 @@ struct ContentView: View {
     @State var b: Double
     
     @State var frame: CGRect = .zero
+    
+    @StateObject var loop : Loop = Loop()
 
     var body: some View {
         GeometryReader { geometry in
             VStack {
-                MetalView(frame: geometry.frame(in: .local), r: r, g: g, b: b)
+                MetalView(frame: geometry.frame(in: .local), counter: loop.i, r: r, g: g, b: b)
                 Stepper(value: $r, in: 0...1, step: 0.2) {
                     Text("R \(r)")
                 }
@@ -27,7 +30,34 @@ struct ContentView: View {
                 Stepper(value: $b, in: 0...1, step: 0.2) {
                     Text("B \(b)")
                 }
+                Text("\(loop.i)")
             }
+        }
+    }
+}
+
+class Loop : ObservableObject {
+    private var counter = PassthroughSubject<UInt64, Never>()
+
+    @Published var i : UInt64 = 0   // only for UI
+
+    func startLoop() {
+        while true {
+            counter.send(DispatchTime.now().uptimeNanoseconds) // publish event
+        }
+    }
+
+    private var subscriber: AnyCancellable?
+    init() {
+        subscriber = counter
+            .throttle(for: 0.01, scheduler: DispatchQueue.global(qos: .background), latest: true) // drop in background
+            .receive(on: DispatchQueue.main)  // only latest result
+            .sink { [weak self] (value) in    // on @pawello2222 comment
+               self?.i = value
+            }
+
+        DispatchQueue.global(qos: .background).async {
+            self.startLoop()
         }
     }
 }
